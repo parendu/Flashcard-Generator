@@ -3,7 +3,7 @@ var inquirer = require('inquirer');
 var basicCard = require('./BasicCard.js');
 var clozeCard = require('./ClozeCard.js');
 var inquirer = require('inquirer');
-//var fs = require('fs');
+var fs = require('fs');
 
 //create new Card based on user selection
 
@@ -42,6 +42,20 @@ function newCards() {
                    //print Front and Back
                     basicCardQuestion.printFront();
                     basicCardQuestion.printBack();
+
+                    //log data to file
+                    
+                    var logData = ("cardType: " + answer.cardType + ", " 
+                                    + "cardFront: " +question.basicCardFront +", "
+                                    + "cardBack: " + question.basicCardBack);
+
+                    //console.log(JSON.stringify(result, null, 2));
+
+                    fs.appendFile('log.txt', logData, function(err) {
+                    if (err) throw err;
+                    console.log('Saved!');
+                    });
+
                 });
 
                   break;
@@ -68,6 +82,19 @@ function newCards() {
                     console.log("----------------------")
                     clozeCardQuestion.cloze();
                     console.log("----------------------")
+                    //log data to file
+                    
+                    var logData = ("cardType: " + answer.cardType + ", " 
+                                    + "cardFront: " + createPartial +", "
+                                    + "cardBack: " + question.clozeCardCloze);
+
+                    //console.log(JSON.stringify(result, null, 2));
+
+                    fs.appendFile('log.txt', logData, function(err) {
+                    if (err) throw err;
+                    console.log('Saved!');
+                    });
+
                 });
                 break;
                                 

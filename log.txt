@@ -1,0 +1,1 @@
+cardType: basic,cardFront: where are you?,cardBack: nyc
